@@ -20,12 +20,12 @@ def get_lyric_by_url(url):
     for line in lines:
         re_result = re.findall(re_sentence_pattern, line)
         if re_result:
-            lyric_lines.append(re_result[0].split(r']')[-1])
+            if '：' not in re_result[0] and '五月天' not in re_result[0]:
+                lyric_lines.append(re_result[0].split(r']')[-1])
     lyric_lines_no_repeat = list(set(lyric_lines))
     lyric_lines_no_repeat.sort(key=lyric_lines.index)
     lyric = '\n'.join(lyric_lines_no_repeat).replace('\u2027', ' ')
     print(lyric)
-    #TODO：去除歌曲信息部分
     return lyric
 
 
