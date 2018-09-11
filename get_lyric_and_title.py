@@ -1,6 +1,7 @@
 import re
 import requests
-from  lxml.html import fromstring
+from lxml.html import fromstring
+
 
 def get_lyric_by_url(url):
     re_sentence_pattern = re.compile('\[\d\d:\d\d\.\d\d\].*')
@@ -24,7 +25,10 @@ def get_lyric_by_url(url):
     lyric_lines_no_repeat.sort(key=lyric_lines.index)
     lyric = '\n'.join(lyric_lines_no_repeat).replace('\u2027', ' ')
     print(lyric)
+    #TODO：去除歌曲信息部分
     return lyric
+
+
 
 def get_song_title_by_url(url):
     req = requests.get(url=url)
