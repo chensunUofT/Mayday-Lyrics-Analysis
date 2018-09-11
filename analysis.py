@@ -14,8 +14,21 @@ def analyze(argument):
 
 
 def analyze_all_albums():
-    #TODO:统计所有专辑
-
+    cwd = os.getcwd()
+    lyrics_dir = cwd + '\\lyrics\\'
+    result_counter = Counter()
+    for root, dirs, filenames in os.walk(lyrics_dir):
+        if not dirs:
+            for file_name in filenames:
+                with open(root+'/'+file_name, 'r') as f:
+                    text = f.read()
+                    result_counter += count_text(text)
+    words = result_counter.keys()
+    result_copy = result_counter.copy()
+    for word in words:
+        if len(word) <= len('我'):
+            del result_copy[word]
+    print(result_copy.most_common(30))
     return
 
 
@@ -34,9 +47,9 @@ def analyze_one_album(album_order):
     for word in words:
         if len(word) <= len('我'):
             del result_copy[word]
-    # print(result_copy.most_common(30))
-    for x, _ in result_copy.most_common(30):
-        print(x)
+    print(result_copy.most_common(30))
+    # for x, _ in result_copy.most_common(30):
+    #     print(x)
     return
 
 

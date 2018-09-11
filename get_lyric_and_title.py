@@ -4,7 +4,6 @@ from lxml.html import fromstring
 
 
 def get_lyric_by_url(url):
-    re_sentence_pattern = re.compile('\[\d\d:\d\d\.\d\d\].*')
     req = requests.get(url=url)
     html_line_to_read = ''
     for html_line in req.iter_lines(1024):
@@ -17,6 +16,7 @@ def get_lyric_by_url(url):
             print('1')
     lines = html_line_to_read.split(r'<br />')
     lyric_lines = []
+    re_sentence_pattern = re.compile('\[\d\d:\d\d\.\d\d\].*')
     for line in lines:
         re_result = re.findall(re_sentence_pattern, line)
         if re_result:
