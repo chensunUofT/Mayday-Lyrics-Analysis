@@ -8,3 +8,5 @@ Run `generate-word-cloud` with parameter to generate word cloud pictures.
 
 Notes:
 [https://github.com/chensunUofT/Mayday-Lyrics-Analysis/blob/master/notes.md]
+
+![word cloud](mayday_wc.png)
